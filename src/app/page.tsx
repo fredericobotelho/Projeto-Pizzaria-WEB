@@ -10,19 +10,21 @@ export default function Page(){
 
   async function handleLogin(formData: FormData){
     "use server"
+
     const email = formData.get("email")
     const password = formData.get("password")
+
     if(email === "" || password === ""){
       return;
     }
 
     try{
-      console.log("FRED")
+
       const response = await api.post("/session", {
         email,
         password
       })
-      console.log(response.data.token)
+
       if(!response.data.token){
         return;
       }
