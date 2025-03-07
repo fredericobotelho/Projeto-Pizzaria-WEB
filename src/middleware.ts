@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import  getCookieServer from '@/lib/cookieServer'
+import { getCookieServer } from '@/lib/cookieServer'
 import { api } from "@/services/api"
 import { Console } from 'console';
 

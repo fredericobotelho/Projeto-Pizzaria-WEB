@@ -47,8 +47,7 @@ export function OrderProvider({ children }: OrderProviderProps){
   const [order, setOrder] = useState<OrderItemProps[]>([])
   const router = useRouter();
 
-  async function onRequestOpen(order_id: string){
-    // console.log(order_id);
+  async function onRequestOpen(order_id: string) {
 
     const token = getCookieClient();
 

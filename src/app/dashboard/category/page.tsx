@@ -2,9 +2,10 @@ import styles from './styles.module.scss'
 import { Button } from "@/app/dashboard/components/button"
 import { api } from '@/services/api'
 import { redirect } from 'next/navigation'
-import  getCookieServer from '@/lib/cookieServer'
+import { getCookieServer } from '@/lib/cookieServer'
 
-export default function Category(){
+export default async function Category() {
+  const token = await getCookieServer();
 
   async function handleRegisterCategory(formData: FormData){
     "use server"
@@ -16,18 +17,19 @@ export default function Category(){
     const data = {
       name: name,
     }
+    try{
 
-    const token = getCookieServer();
 
-    await api.post("/category", data, {
-      headers:{
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .catch((err) => {
+      await api.post("/category", data, {
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
+    }catch(err) {
       console.log(err);
       return;
-    })
+    }
+
 
     redirect("/dashboard")
 
